@@ -49,6 +49,9 @@ Resources:
     Properties:
       Name: "GenerateImageAPI"
       Description: "API for generating images"
+      EndpointConfiguration:
+        Types:
+          - REGIONAL 
 
 Outputs:
   GenerateImageApi:
