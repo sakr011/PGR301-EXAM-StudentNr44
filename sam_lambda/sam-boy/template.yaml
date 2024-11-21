@@ -42,9 +42,9 @@ Resources:
             Path: /generate-image
             Method: post
             RestApiId:
-              Ref: ServerlessRestApi
+              Ref: GenerateImageApiGateway
       
-  ServerlessRestApi:
+  GenerateImageApiGateway:
     Type: AWS::ApiGateway::RestApi
     Properties:
       Name: "GenerateImageAPI"
@@ -56,4 +56,4 @@ Resources:
 Outputs:
   GenerateImageApi:
     Description: API Gateway endpoint URL for the Generate Image function
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/generate-image/"
+    Value: !Sub "https://${GenerateImageApiGateway}.execute-api.${AWS::Region}.amazonaws.com/Prod/generate-image/"
