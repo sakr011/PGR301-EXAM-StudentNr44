@@ -44,15 +44,11 @@ Resources:
             RestApiId:
               Fn::Ref: GenerateImageApi
       
-Resources:
-  GenerateImageApi:
+  ServerlessRestApi:
     Type: AWS::ApiGateway::RestApi
     Properties:
       Name: "GenerateImageAPI"
       Description: "API for generating images"
-      EndpointConfiguration:
-        Types:
-          - REGIONAL
 
 Outputs:
   GenerateImageApi:
