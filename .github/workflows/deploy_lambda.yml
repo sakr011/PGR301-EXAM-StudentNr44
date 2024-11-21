@@ -27,7 +27,7 @@ jobs:
 
       # Steg 3: Bygg SAM-applikasjonen
       - name: Build SAM application
-        run: sam build -t sam_lambda/sam-boy/template.yaml
+        run: sam build -t template.yaml
         working-directory: sam_lambda/sam-boy
 
       # Steg 4: Deploy SAM-applikasjonen
