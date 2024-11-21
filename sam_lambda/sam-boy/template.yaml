@@ -41,6 +41,18 @@ Resources:
           Properties:
             Path: /generate-image
             Method: post
+            RestApiId:
+              Fn::Ref: GenerateImageApi
+      
+Resources:
+  GenerateImageApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: "GenerateImageAPI"
+      Description: "API for generating images"
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
 
 Outputs:
   GenerateImageApi:
