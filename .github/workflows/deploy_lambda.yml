@@ -24,13 +24,21 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r sam_lambda/sam-boy/generate_image/requirements.txt
+    
+      # Steg 3: Sett opp AWS Credentials  
+      - name: Set up AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
-      # Steg 3: Bygg SAM-applikasjonen
+      # Steg 4: Bygg SAM-applikasjonen
       - name: Build SAM application
         run: sam build -t template.yaml
         working-directory: sam_lambda/sam-boy
 
-      # Steg 4: Deploy SAM-applikasjonen
+      # Steg 5: Deploy SAM-applikasjonen
       - name: Deploy SAM application
         run: sam deploy --no-confirm-changeset --stack-name my-stack-name --capabilities CAPABILITY_IAM
         working-directory: sam_lambda/sam-boy
