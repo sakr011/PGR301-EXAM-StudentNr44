@@ -42,7 +42,7 @@ Resources:
             Path: /generate-image
             Method: post
             RestApiId:
-              Fn::Ref: GenerateImageApi
+              Ref: ServerlessRestApi
       
   ServerlessRestApi:
     Type: AWS::ApiGateway::RestApi
