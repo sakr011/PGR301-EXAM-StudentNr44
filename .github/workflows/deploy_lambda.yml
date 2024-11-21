@@ -40,5 +40,5 @@ jobs:
 
       # Steg 5: Deploy SAM-applikasjonen
       - name: Deploy SAM application
-        run: sam deploy --no-confirm-changeset --stack-name my-stack-name --capabilities CAPABILITY_IAM
+        run: sam deploy --no-confirm-changeset --stack-name candidate-44-stack --capabilities CAPABILITY_IAM
         working-directory: sam_lambda/sam-boy
