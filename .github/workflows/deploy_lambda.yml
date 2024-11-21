@@ -1,4 +1,4 @@
-name: Deploy Lambda with SAM
+name: Deploy SAM application to AWS
 
 on:
   push:
@@ -10,23 +10,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up AWS CLI
-        uses: aws-actions/configure-aws-credentials@v1
+      # Steg 1: Installer Python 3.9
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-1
+          python-version: '3.9'
 
+      # Steg 2: Installer avhengigheter
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install aws-sam-cli
+          pip install -r sam_lambda/sam-boy/requirements.txt
 
+      # Steg 3: Bygg SAM-applikasjonen
       - name: Build SAM application
         run: sam build -t sam_lambda/sam-boy/template.yaml
+        working-directory: sam_lambda/sam-boy
 
+      # Steg 4: Deploy SAM-applikasjonen
       - name: Deploy SAM application
-        run: sam deploy --no-confirm-changeset --stack-name my-lambda-stack --capabilities CAPABILITY_IAM
+        run: sam deploy --no-confirm-changeset --stack-name my-stack-name --capabilities CAPABILITY_IAM
+        working-directory: sam_lambda/sam-boy
