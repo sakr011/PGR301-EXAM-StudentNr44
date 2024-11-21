@@ -1,0 +1,34 @@
+name: Deploy Lambda with SAM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      - name: Install SAM CLI
+        run: |
+          curl --location "https://github.com/aws/aws-sam-cli/releases/download/v1.73.0/aws-sam-cli-linux-x86_64.zip" -o sam-cli.zip
+          unzip sam-cli.zip
+          sudo ./install
+
+#
+      - name: Build SAM application
+        run: sam build
+
+      - name: Deploy SAM application
+        run: sam deploy --no-confirm-changeset --capabilities CAPABILITY_IAM
