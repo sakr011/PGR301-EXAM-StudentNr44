@@ -28,7 +28,7 @@ jobs:
     # Steg 4: Bygg Docker-imaget
     - name: Build Docker image
       run: |
-        docker build -t `sakr011/java-sqs-client:latest .
+        docker build -t sakr011/java-sqs-client:latest .
         docker tag sakr011/java-sqs-client:latest sakr011/java-sqs-client:${{ github.sha }}
 
     # Steg 5: Push Docker image til Docker Hub
