@@ -3,11 +3,11 @@ name: Build and Publish Docker Image
 on:
   push:
     branches:
-      - main  # Kjør workflowen ved push til main-branchen
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Bruk et Ubuntu-miljø for jobben
+    runs-on: ubuntu-latest
 
     steps:
     # Steg 1: Sjekk ut koden
@@ -27,8 +27,8 @@ jobs:
 
     # Steg 4: Bygg Docker-imaget
     - name: Build Docker image
-      run: |
-        docker build -t sakr011/java-sqs-client:latest .
+    run: |
+        docker build -t sakr011/java-sqs-client:latest ./java_sqs_client
         docker tag sakr011/java-sqs-client:latest sakr011/java-sqs-client:${{ github.sha }}
 
     # Steg 5: Push Docker image til Docker Hub
