@@ -1,0 +1,38 @@
+name: Build and Publish Docker Image
+
+on:
+  push:
+    branches:
+      - main  # Kjør workflowen ved push til main-branchen
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Bruk et Ubuntu-miljø for jobben
+
+    steps:
+    # Steg 1: Sjekk ut koden
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Steg 2: Sett opp Docker for bygging
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    # Steg 3: Logg inn på Docker Hub med secrets
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    # Steg 4: Bygg Docker-imaget
+    - name: Build Docker image
+      run: |
+        docker build -t `sakr011/java-sqs-client:latest .
+        docker tag sakr011/java-sqs-client:latest sakr011/java-sqs-client:${{ github.sha }}
+
+    # Steg 5: Push Docker image til Docker Hub
+    - name: Push Docker image
+      run: |
+        docker push sakr011/java-sqs-client:latest
+        docker push sakr011/java-sqs-client:${{ github.sha }}
