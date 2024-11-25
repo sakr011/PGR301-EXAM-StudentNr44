@@ -27,12 +27,18 @@ jobs:
         aws-region: us-east-1
 
     - name: Terraform Init
-      run: terraform init
+      run: |
+        cd infra
+        terraform init
 
     - name: Terraform Plan
       if: github.ref != 'refs/heads/main'
-      run: terraform plan -out=tfplan
+      run: |
+        cd infra
+        terraform plan -out=tfplan
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main'
-      run: terraform apply -auto-approve tfplan
+      run: |
+        cd infra
+        terraform apply -auto-approve tfplan
