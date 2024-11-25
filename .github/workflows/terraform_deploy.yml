@@ -17,13 +17,13 @@ jobs:
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v2
       with:
-        terraform-version: = 1.9.8
+        terraform_version: = 1.9.8
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
     - name: Terraform Init
