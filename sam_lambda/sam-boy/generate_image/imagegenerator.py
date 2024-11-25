@@ -4,17 +4,17 @@ import json
 import random
 import os
 
-# Sett opp AWS-klienter
+# AWS-klienter
 bedrock_client = boto3.client("bedrock-runtime", region_name="us-east-1")
 s3_client = boto3.client("s3")
 
-# Hent miljøvariabler
+# Henter miljøvariabler
 bucket_name = os.environ["S3_BUCKET_NAME"]
 candidate_number = os.environ["CANDIDATE_NUMBER"]
 
 def lambda_handler(event, context):
     try:
-        # Ekstraher prompt fra forespørselens body
+        # Henter ut prompt fra forespørselens body
         body = json.loads(event["body"])
         prompt = body.get("prompt")
         if not prompt:
@@ -50,7 +50,7 @@ def lambda_handler(event, context):
         )
         model_response = json.loads(response["body"].read())
 
-        # Dekod bildet fra Base64
+        # Dekode bildet fra Base64
         base64_image_data = model_response["images"][0]
         image_data = base64.b64decode(base64_image_data)
 
