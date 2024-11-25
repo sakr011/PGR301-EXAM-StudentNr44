@@ -17,7 +17,7 @@ jobs:
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v2
       with:
-        terraform_version: "1.9.8"
+        terraform_version: 1.9.8
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -38,7 +38,6 @@ jobs:
         terraform plan -var aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }} \
                        -var aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
                        -var aws_region=us-east-1 \
-                       -out=tfplan
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main'
@@ -47,4 +46,4 @@ jobs:
         terraform apply -var aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }} \
                         -var aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
                         -var aws_region=us-east-1 \
-                        -auto-approve tfplan
+                        -auto-approve
