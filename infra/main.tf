@@ -22,7 +22,7 @@ provider "aws" {
 }
 
 resource "aws_sqs_queue" "image_queue" {
-  name = "image-generation-queue"
+  name = "44-image-generation-queue"
 }
 
 resource "aws_lambda_function" "sqs_lambda" {
