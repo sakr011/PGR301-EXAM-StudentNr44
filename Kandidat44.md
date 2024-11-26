@@ -9,11 +9,13 @@ SQS-Kø URL      - https://sqs.eu-west-1.amazonaws.com/244530008913/44-image-gen
 
 Oppgave 3:
 Beskrivelse av taggestrategi:
-Jeg valgte latest-tag og Commit SHA-tag, latest-tag for gjør det lettere for brukere å alltid få tilgang til 
+Jeg valgte latest-tag og Commit SHA-tag. 
+Latest-tag gjør det lettere for brukere å alltid få tilgang til 
 den nyeste versjonen av applikasjonen uten å måtte spesifisere en versjon,
-og Commit SHA-tag fordi den gir en unik identifikator for hver spesifikke versjon
-basert på aktuell kode i main-branchen. Den gir også fra seg sporbarhet og mulighet
-til å rulle tilbake en spesifikk versjon av applikasjonen om det skulle ønskes.
+og Commit SHA-tag fordi den gir en unik identifikator for hver spesifikke 
+versjon basert på aktuell kode i main-branchen. Den gir også fra seg sporbarhet 
+og muligheten til å rulle tilbake en spesifikk versjon av applikasjonen om det 
+skulle ønskes.
 
 Container image + SQS URL: sakr011/java-sqs-client
 
